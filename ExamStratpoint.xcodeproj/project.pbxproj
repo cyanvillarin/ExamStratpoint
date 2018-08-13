@@ -15,6 +15,7 @@
 		D895244921213600006FBA4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D895244721213600006FBA4E /* LaunchScreen.storyboard */; };
 		D895245421213601006FBA4E /* ExamStratpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895245321213601006FBA4E /* ExamStratpointTests.swift */; };
 		D895245F21213601006FBA4E /* ExamStratpointUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895245E21213601006FBA4E /* ExamStratpointUITests.swift */; };
+		D895246D2121412A006FBA4E /* ViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895246C2121412A006FBA4E /* ViewControllerCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		D895245A21213601006FBA4E /* ExamStratpointUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExamStratpointUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D895245E21213601006FBA4E /* ExamStratpointUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamStratpointUITests.swift; sourceTree = "<group>"; };
 		D895246021213601006FBA4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D895246C2121412A006FBA4E /* ViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				D895243B21213600006FBA4E /* AppDelegate.swift */,
+				D895246C2121412A006FBA4E /* ViewControllerCell.swift */,
 				D895243D21213600006FBA4E /* ViewController.swift */,
 				D895243F21213600006FBA4E /* Main.storyboard */,
 				D895244521213600006FBA4E /* Assets.xcassets */,
@@ -261,6 +264,7 @@
 			files = (
 				D895244421213600006FBA4E /* ExamStratpoint.xcdatamodeld in Sources */,
 				D895243E21213600006FBA4E /* ViewController.swift in Sources */,
+				D895246D2121412A006FBA4E /* ViewControllerCell.swift in Sources */,
 				D895243C21213600006FBA4E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
