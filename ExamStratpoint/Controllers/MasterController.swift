@@ -25,6 +25,7 @@ class MasterController: UITableViewController, UISplitViewControllerDelegate {
         splitViewController?.delegate = self
         navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
         navigationItem.leftItemsSupplementBackButton = true
+        splitViewController?.preferredDisplayMode = .allVisible
         
     }
 
@@ -107,6 +108,48 @@ class MasterController: UITableViewController, UISplitViewControllerDelegate {
     
     // source vc
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        
+        // identifier if required, if you have more then one segue
+        // it could be set via IB, i did ...
+        if segue.identifier == "masterToDetail" {
+            //
+            
+            // colorViewController should never be assigned to nil !!!
+            var dvc: DetailController!
+            
+            // with help of adaptive segue we can support all devices
+            if let movieNavigationController = segue.destination as? UINavigationController {
+                
+                // works on devices where UISplitViewController is implemented
+                dvc = movieNavigationController.topViewController as! DetailController
+                dvc.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+                dvc.navigationItem.leftItemsSupplementBackButton = true
+            } else {
+                
+                // works for iPhone on ios7, where UISplitViewController is not implemented
+                dvc = segue.destination as! DetailController
+            }
+            // this is common part, where one can configure detail view
+            // segue provides a new instance of detail view everytime
+            let selectedIndexPath = sender as! NSIndexPath
+            let movie = self.movies[selectedIndexPath.row]
+                
+            dvc.titleValue = movie.title
+            dvc.yearValue = movie.year
+            dvc.ratingValue = movie.rating
+            dvc.overviewValue = movie.overview
+            dvc.slugValue = movie.slug
+            
+        }
+        
+        
+        
+        
+        
+        
+        /*
         if segue.identifier == "masterToDetail"{
             let selectedIndexPath = sender as! NSIndexPath
             
@@ -119,6 +162,8 @@ class MasterController: UITableViewController, UISplitViewControllerDelegate {
             dvc.overviewValue = movie.overview
             dvc.slugValue = movie.slug
         }
+        */
+        
     }
     
     // MARK: - UITableViewDelegate

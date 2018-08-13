@@ -18,11 +18,11 @@ class DetailController: UIViewController {
     @IBOutlet var ratingLabel: UILabel!
     @IBOutlet var overviewLabel: UILabel!
     
-    var titleValue: String = ""
+    var titleValue: String = "test"
     var yearValue: Int = 0
     var ratingValue: Float = 0.0
-    var overviewValue: String = ""
-    var slugValue: String = ""
+    var overviewValue: String = "test"
+    var slugValue: String = "test"
     
     override func viewDidLoad() {
         
