@@ -123,7 +123,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3z-0D-Tdb">
-                                        <rect key="frame" x="93" y="35" width="187" height="20"/>
+                                        <rect key="frame" x="21" y="35" width="332" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Movie Title">
@@ -156,8 +156,8 @@
                                 <rect key="frame" x="20" y="111" width="77" height="108"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tfq-Mq-PKc">
-                                <rect key="frame" x="16" y="254" width="343" height="114"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tfq-Mq-PKc">
+                                <rect key="frame" x="16" y="254" width="343" height="393"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment>
@@ -218,6 +218,7 @@
                     <connections>
                         <outlet property="backdropView" destination="VGo-2W-Jvi" id="uCG-TO-BBS"/>
                         <outlet property="coverView" destination="VNS-Bi-BeJ" id="IY7-4D-3GW"/>
+                        <outlet property="headerLabel" destination="b3z-0D-Tdb" id="LcE-N7-zOl"/>
                         <outlet property="overviewLabel" destination="Tfq-Mq-PKc" id="nOo-Gl-AWI"/>
                         <outlet property="ratingLabel" destination="glr-9e-71q" id="ZvV-7A-Vqu"/>
                         <outlet property="titleLabel" destination="66e-Tc-Uxs" id="lwM-cH-tWP"/>
