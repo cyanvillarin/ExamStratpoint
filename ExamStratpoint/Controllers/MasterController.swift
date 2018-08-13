@@ -75,7 +75,11 @@ class MasterController: UITableViewController, UISplitViewControllerDelegate {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 211
+        let h1 = CGFloat(439.0)
+        let w1 = CGFloat(780.0)
+        let w2 = CGFloat(self.view.frame.width)
+        let h2 = (h1 * w2) / w1
+        return h2
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

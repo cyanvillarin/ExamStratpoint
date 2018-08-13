@@ -10,9 +10,12 @@ import UIKit
 
 class DetailController: UIViewController {
 
+    @IBOutlet var view0: UIView!
+    @IBOutlet var view1: UIView!
+    @IBOutlet var view2: UIView!
+    
     @IBOutlet var coverView: UIImageView!
     @IBOutlet var backdropView: UIImageView!
-    @IBOutlet var headerLabel: UILabel!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var yearLabel: UILabel!
     @IBOutlet var ratingLabel: UILabel!
@@ -36,6 +39,17 @@ class DetailController: UIViewController {
         let urlString = "https://aacayaco.github.io/movielist/images/" + self.slugValue + "-backdrop.jpg"
         let url = URL(string: urlString)
         self.backdropView.contentMode = .scaleAspectFit
+        
+        /*
+        let h1 = CGFloat(439.0)
+        let w1 = CGFloat(780.0)
+        let w2 = CGFloat(self.view0.frame.width)
+        let h2 = (h1 * w2) / w1
+        
+        self.view1.frame = CGRect(x: 0, y: 0, width: w2, height: h2)
+        self.view2.frame = CGRect(x: 0, y: h2, width: w2, height: self.view0.frame.height - h2)
+        */
+        
         getDataFromUrl(url: url!) { data, response, error in
             guard let data = data, error == nil else { return }
             DispatchQueue.main.async() {
