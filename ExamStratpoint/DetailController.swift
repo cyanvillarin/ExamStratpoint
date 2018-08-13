@@ -32,9 +32,37 @@ class DetailController: UIViewController {
         self.ratingLabel.text = String(self.ratingValue)
         self.overviewLabel.text = self.overviewValue
         self.overviewLabel.sizeToFit()
+        
+        let urlString = "https://aacayaco.github.io/movielist/images/" + self.slugValue + "-backdrop.jpg"
+        let url = URL(string: urlString)
+        self.backdropView.contentMode = .scaleAspectFit
+        getDataFromUrl(url: url!) { data, response, error in
+            guard let data = data, error == nil else { return }
+            DispatchQueue.main.async() {
+                self.backdropView.image = UIImage(data: data)
+            }
+        }
+        
+        let urlString2 = "https://aacayaco.github.io/movielist/images/" + self.slugValue + "-cover.jpg"
+        let url2 = URL(string: urlString2)
+        self.coverView.contentMode = .scaleAspectFit
+        getDataFromUrl(url: url2!) { data, response, error in
+            guard let data = data, error == nil else { return }
+            DispatchQueue.main.async() {
+                self.coverView.image = UIImage(data: data)
+            }
+        }
+        
+        
         super.viewDidLoad()
     }
 
+    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            completion(data, response, error)
+            }.resume()
+    }
+    
     @IBAction func returnToHome(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }

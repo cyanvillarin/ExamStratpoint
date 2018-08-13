@@ -60,15 +60,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            completion(data, response, error)
+            }.resume()
+    }
     
     // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.movies.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return 200
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 211
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -76,6 +80,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let movie = self.movies[indexPath.row]
         cell.titleLabel.text = movie.title
         cell.yearLabel.text = String(movie.year)
+        
+        let urlString = "https://aacayaco.github.io/movielist/images/" + movie.slug + "-backdrop.jpg"
+        let url = URL(string: urlString)
+        cell.backdropView.contentMode = .scaleAspectFit
+        getDataFromUrl(url: url!) { data, response, error in
+            guard let data = data, error == nil else { return }
+            DispatchQueue.main.async() {
+                cell.backdropView.image = UIImage(data: data)
+            }
+        }
+        
         return cell
     }
     
