@@ -23,7 +23,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0N-Hi-uB4">
-                                        <rect key="frame" x="159" y="32" width="55" height="20"/>
+                                        <rect key="frame" x="159" y="35" width="55" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Movies">
@@ -62,7 +62,7 @@
                                                         <fragment content="Fight Club">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.85366742227979275" green="0.85366742227979275" blue="0.85366742227979275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <font key="NSFont" size="24" name="Helvetica"/>
+                                                                <font key="NSFont" size="18" name="Helvetica"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -70,13 +70,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYe-Ji-nX2">
-                                                    <rect key="frame" x="25" y="126" width="114" height="17"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <rect key="frame" x="25" y="120" width="114" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="1999">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.85366742227979275" green="0.85366742227979275" blue="0.85366742227979275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -85,14 +85,24 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="backdropView" destination="FYW-GP-PFV" id="Nbr-z2-nR3"/>
+                                            <outlet property="titleLabel" destination="4Oy-67-NTQ" id="XY4-jw-Hs0"/>
+                                            <outlet property="yearLabel" destination="JYe-Ji-nX2" id="Nhf-WH-IxL"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="8bC-Xf-vdC" id="0Xw-I5-ZaE"/>
+                                    <outlet property="delegate" destination="8bC-Xf-vdC" id="WEz-Up-ilE"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="tableView" destination="km1-vY-lUY" id="DQW-3k-BA8"/>
                         <segue destination="SXM-aw-bZk" kind="presentation" identifier="masterToDetail" id="YKe-fm-rRL"/>
                     </connections>
                 </viewController>
@@ -103,7 +113,7 @@
         <!--detail-->
         <scene sceneID="2vr-OB-tkf">
             <objects>
-                <viewController title="detail" id="SXM-aw-bZk" sceneMemberID="viewController">
+                <viewController title="detail" id="SXM-aw-bZk" customClass="DetailController" customModule="ExamStratpoint" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YxY-v9-bmP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,7 +123,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3z-0D-Tdb">
-                                        <rect key="frame" x="93" y="32" width="187" height="20"/>
+                                        <rect key="frame" x="93" y="35" width="187" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Movie Title">
@@ -127,9 +137,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ME0-QC-17W">
-                                        <rect key="frame" x="9" y="32" width="20" height="20"/>
+                                        <rect key="frame" x="7" y="35" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button" image="back"/>
+                                        <connections>
+                                            <action selector="returnToHome:" destination="SXM-aw-bZk" eventType="touchUpInside" id="NEQ-fK-Yr6"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1139805436" green="0.1695272883" blue="0.29570110100000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -202,6 +215,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Dq1-fo-95G"/>
                     </view>
+                    <connections>
+                        <outlet property="backdropView" destination="VGo-2W-Jvi" id="uCG-TO-BBS"/>
+                        <outlet property="coverView" destination="VNS-Bi-BeJ" id="IY7-4D-3GW"/>
+                        <outlet property="overviewLabel" destination="Tfq-Mq-PKc" id="nOo-Gl-AWI"/>
+                        <outlet property="ratingLabel" destination="glr-9e-71q" id="ZvV-7A-Vqu"/>
+                        <outlet property="titleLabel" destination="66e-Tc-Uxs" id="lwM-cH-tWP"/>
+                        <outlet property="yearLabel" destination="mmp-cM-5mU" id="ruX-WQ-W7d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3YJ-x2-dbg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

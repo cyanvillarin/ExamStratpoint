@@ -16,6 +16,11 @@
 		D895245421213601006FBA4E /* ExamStratpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895245321213601006FBA4E /* ExamStratpointTests.swift */; };
 		D895245F21213601006FBA4E /* ExamStratpointUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895245E21213601006FBA4E /* ExamStratpointUITests.swift */; };
 		D895246D2121412A006FBA4E /* ViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895246C2121412A006FBA4E /* ViewControllerCell.swift */; };
+		D895246F21214F9E006FBA4E /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895246E21214F9E006FBA4E /* Movie.swift */; };
+		D895247221214FF5006FBA4E /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895247121214FF5006FBA4E /* Response.swift */; };
+		D8952476212151B4006FBA4E /* DataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8952475212151B4006FBA4E /* DataClass.swift */; };
+		D8952478212153C5006FBA4E /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8952477212153C5006FBA4E /* DetailController.swift */; };
+		D895247B2121583E006FBA4E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895247A2121583E006FBA4E /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +56,11 @@
 		D895245E21213601006FBA4E /* ExamStratpointUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamStratpointUITests.swift; sourceTree = "<group>"; };
 		D895246021213601006FBA4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D895246C2121412A006FBA4E /* ViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCell.swift; sourceTree = "<group>"; };
+		D895246E21214F9E006FBA4E /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		D895247121214FF5006FBA4E /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		D8952475212151B4006FBA4E /* DataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataClass.swift; sourceTree = "<group>"; };
+		D8952477212153C5006FBA4E /* DetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
+		D895247A2121583E006FBA4E /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +111,12 @@
 		D895243A21213600006FBA4E /* ExamStratpoint */ = {
 			isa = PBXGroup;
 			children = (
+				D8952479212153CD006FBA4E /* Cells */,
+				D895247021214FDA006FBA4E /* Models */,
 				D895243B21213600006FBA4E /* AppDelegate.swift */,
-				D895246C2121412A006FBA4E /* ViewControllerCell.swift */,
+				D895247A2121583E006FBA4E /* Reachability.swift */,
 				D895243D21213600006FBA4E /* ViewController.swift */,
+				D8952477212153C5006FBA4E /* DetailController.swift */,
 				D895243F21213600006FBA4E /* Main.storyboard */,
 				D895244521213600006FBA4E /* Assets.xcassets */,
 				D895244721213600006FBA4E /* LaunchScreen.storyboard */,
@@ -129,6 +142,24 @@
 				D895246021213601006FBA4E /* Info.plist */,
 			);
 			path = ExamStratpointUITests;
+			sourceTree = "<group>";
+		};
+		D895247021214FDA006FBA4E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D895247121214FF5006FBA4E /* Response.swift */,
+				D8952475212151B4006FBA4E /* DataClass.swift */,
+				D895246E21214F9E006FBA4E /* Movie.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D8952479212153CD006FBA4E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D895246C2121412A006FBA4E /* ViewControllerCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,8 +295,13 @@
 			files = (
 				D895244421213600006FBA4E /* ExamStratpoint.xcdatamodeld in Sources */,
 				D895243E21213600006FBA4E /* ViewController.swift in Sources */,
+				D8952476212151B4006FBA4E /* DataClass.swift in Sources */,
 				D895246D2121412A006FBA4E /* ViewControllerCell.swift in Sources */,
 				D895243C21213600006FBA4E /* AppDelegate.swift in Sources */,
+				D895247221214FF5006FBA4E /* Response.swift in Sources */,
+				D895246F21214F9E006FBA4E /* Movie.swift in Sources */,
+				D8952478212153C5006FBA4E /* DetailController.swift in Sources */,
+				D895247B2121583E006FBA4E /* Reachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

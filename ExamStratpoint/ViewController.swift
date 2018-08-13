@@ -8,60 +8,110 @@
 
 import UIKit
 
-class ViewController: UITableViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var tableView: UITableView
+    @IBOutlet var tableView: UITableView!
+    
+    var movies: Array<Movie> = []
+    var pageNumber: Int = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        getJSONData()
     }
 
+    func getJSONData() {
+        print("getJSONData")
+        
+        if ReachabilityTest.isConnectedToNetwork() {
+            print("Internet connection available")
+            
+            let urlstring = "https://aacayaco.github.io/movielist/list_movies_page" + String(self.pageNumber) + ".json"
+            guard let url = URL(string: urlstring) else { return }
+            
+            let task = URLSession.shared.dataTask(with: url) { data, _, error in
+                guard let data = data, error == nil else {
+                    print(error ?? "Unknown error")
+                    return
+                }
+                
+                let decoder = JSONDecoder()
+                do {
+                    let json = try decoder.decode(Response.self, from: data)
+                    
+                    print(json.data.movies)
+                    self.movies.append(contentsOf: json.data.movies)
+                    
+                } catch {
+                    print(error)
+                }
+                
+                // reload tableview when the app finishes getting data from the API
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            task.resume()
+        }
+        else{
+            print("No internet connection available")
+        }
+    }
+    
+    
+    // MARK: - UITableViewDataSource
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.movies.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 200
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath as IndexPath) as! ViewControllerCell
+        
+        let movie = self.movies[indexPath.row]
+        cell.titleLabel.text = movie.title
+        cell.yearLabel.text = String(movie.year)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "masterToDetail", sender: indexPath)
+    }
+    
+    // source vc
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "masterToDetail"{
+            let selectedIndexPath = sender as! NSIndexPath
+            
+            let dvc = segue.destination as! DetailController
+            let movie = self.movies[selectedIndexPath.row]
+            
+            dvc.titleValue = movie.title
+            dvc.yearValue = movie.year
+            dvc.ratingValue = movie.rating
+            dvc.overviewValue = movie.overview
+            dvc.slugValue = movie.slug
+        }
+    }
+    
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // code
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-}
-
-// MARK: - UITableViewDataSource
-extension ViewController {
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // let cellData = data[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath)
-        // cell.textLabel?.text = cellData.label
-        return cell
-    }
-}
-
-
-// MARK: - UITableViewDelegate
-extension ViewController {
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        /*
-        let cellData = data[indexPath.row]
-        
-        guard let color = cellData.color else {
-            cell.textLabel?.textColor = .black
-            cell.backgroundColor = .white
-            return
-        }
-        
-        var red = CGFloat(0.0), green = CGFloat(0.0), blue = CGFloat(0.0), alpha = CGFloat(0.0)
-        color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        let threshold = CGFloat(105)
-        let bgDelta = ((red * 0.299) + (green * 0.587) + (blue * 0.114));
-        
-        let textColor: UIColor = (255 - bgDelta < threshold) ? .black : .white;
-        cell.textLabel?.textColor = textColor
-        cell.backgroundColor = color
-        */
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 
