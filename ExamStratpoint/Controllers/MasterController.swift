@@ -67,11 +67,7 @@ class MasterController: UITableViewController, UISplitViewControllerDelegate {
         }
     }
     
-    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            completion(data, response, error)
-            }.resume()
-    }
+    
     
     // MARK: - UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,14 +85,7 @@ class MasterController: UITableViewController, UISplitViewControllerDelegate {
         cell.yearLabel.text = String(movie.year)
         
         let urlString = "https://aacayaco.github.io/movielist/images/" + movie.slug + "-backdrop.jpg"
-        let url = URL(string: urlString)
-        cell.backdropView.contentMode = .scaleAspectFit
-        getDataFromUrl(url: url!) { data, response, error in
-            guard let data = data, error == nil else { return }
-            DispatchQueue.main.async() {
-                cell.backdropView.image = UIImage(data: data)
-            }
-        }
+        cell.backdropImage.loadImageUsingUrlString(urlString: urlString)
         
         return cell
     }
