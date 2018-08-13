@@ -27,8 +27,17 @@ class MasterController: UITableViewController, UISplitViewControllerDelegate {
         navigationItem.leftItemsSupplementBackButton = true
         splitViewController?.preferredDisplayMode = .allVisible
         
+        /*
+        let detailsViewSize = getDetailViewSize()
+        // let w2 = CGFloat(self.view0.frame.width)
+        
+        print(self.view.frame.width)
+        print(detailsViewSize.width)
+        */
     }
 
+    
+    
     func getJSONData() {
         print("getJSONData")
         
@@ -178,6 +187,18 @@ class MasterController: UITableViewController, UISplitViewControllerDelegate {
             }
         }
     }
+    
+    /*
+    func getDetailViewSize() -> CGSize {
+        var detailViewController: UIViewController
+        if ((splitViewController?.viewControllers.count)! > 1) {
+            detailViewController = (splitViewController?.viewControllers[1] as UIViewController?)!
+        } else {
+            detailViewController = (splitViewController?.viewControllers[0] as UIViewController?)!
+        }
+        return detailViewController.view.frame.size
+    }
+    */
     
     // MARK: - UISplitViewControllerDelegate
     

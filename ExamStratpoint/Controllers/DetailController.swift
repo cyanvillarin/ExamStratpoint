@@ -21,6 +21,9 @@ class DetailController: UIViewController {
     @IBOutlet var ratingLabel: UILabel!
     @IBOutlet var overviewLabel: UILabel!
     
+    var topSafeArea: CGFloat = 0.0
+    var bottomSafeArea: CGFloat = 0.0
+    
     var titleValue: String = "test"
     var yearValue: Int = 0
     var ratingValue: Float = 0.0
@@ -38,17 +41,27 @@ class DetailController: UIViewController {
         
         let urlString = "https://aacayaco.github.io/movielist/images/" + self.slugValue + "-backdrop.jpg"
         let url = URL(string: urlString)
-        self.backdropView.contentMode = .scaleAspectFit
+        self.backdropView.contentMode = .scaleAspectFill
         
-        /*
+        
         let h1 = CGFloat(439.0)
         let w1 = CGFloat(780.0)
-        let w2 = CGFloat(self.view0.frame.width)
-        let h2 = (h1 * w2) / w1
         
-        self.view1.frame = CGRect(x: 0, y: 0, width: w2, height: h2)
-        self.view2.frame = CGRect(x: 0, y: h2, width: w2, height: self.view0.frame.height - h2)
+        // let detailsViewSize = getDetailViewSize()
+        
+        /*
+        print(self.view.frame.width)
+        print(detailsViewSize.width)
         */
+        
+        // let w2 = CGFloat(detailsViewSize.width)
+        
+        // let w2 = CGFloat(self.view0.frame.width)
+        let h2 = (h1 * self.view0.frame.width) / w1
+        
+        // self.view1.frame = CGRect(x: 0, y: 0, width: self.view0.frame.width, height: h2)
+        // self.view2.frame = CGRect(x: 0, y: h2, width: w2, height: self.view0.frame.height - h2)
+        
         
         getDataFromUrl(url: url!) { data, response, error in
             guard let data = data, error == nil else { return }
@@ -71,6 +84,16 @@ class DetailController: UIViewController {
         super.viewDidLoad()
     }
 
+    func getDetailViewSize() -> CGSize {
+        var detailViewController: UIViewController
+        if ((self.splitViewController?.viewControllers.count)! > 1) {
+            detailViewController = (self.splitViewController?.viewControllers[1] as UIViewController?)!
+        } else {
+            detailViewController = (self.splitViewController?.viewControllers[0] as UIViewController?)!
+        }
+        return detailViewController.view.frame.size
+    }
+    
     func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             completion(data, response, error)

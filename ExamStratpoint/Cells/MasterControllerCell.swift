@@ -47,7 +47,7 @@ class CustomImageView: UIImageView {
                 let imageToCache = UIImage(data: data)
                 
                 if self.imageUrlString == urlString {
-                    self.image = imageToCache
+                   self.image = imageToCache
                 }
                 
                 imageCache.setObject(imageToCache!, forKey: urlString as AnyObject)
