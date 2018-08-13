@@ -27,7 +27,7 @@ class DetailController: UIViewController {
     override func viewDidLoad() {
         
         self.titleLabel.text = self.titleValue
-        self.headerLabel.text = self.titleValue
+        // self.headerLabel.text = self.titleValue
         self.yearLabel.text = String(self.yearValue)
         self.ratingLabel.text = String(self.ratingValue)
         self.overviewLabel.text = self.overviewValue

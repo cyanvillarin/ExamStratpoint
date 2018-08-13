@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewControllerCell: UITableViewCell {
+class MasterControllerCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var yearLabel: UILabel!
     @IBOutlet var backdropView: UIImageView!
