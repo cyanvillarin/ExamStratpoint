@@ -24,11 +24,11 @@ class DetailController: UIViewController {
     var topSafeArea: CGFloat = 0.0
     var bottomSafeArea: CGFloat = 0.0
     
-    var titleValue: String = "test"
+    var titleValue: String = ""
     var yearValue: Int = 0
     var ratingValue: Float = 0.0
-    var overviewValue: String = "test"
-    var slugValue: String = "test"
+    var overviewValue: String = ""
+    var slugValue: String = ""
     
     override func viewDidLoad() {
         
