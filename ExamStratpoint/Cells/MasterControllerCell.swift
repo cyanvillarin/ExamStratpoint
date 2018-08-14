@@ -26,6 +26,7 @@ class CustomImageView: UIImageView {
             }.resume()
     }
     
+    // loading image with caching functionality to avoid stuttering of images
     func loadImageUsingUrlString(urlString: String) {
         
         imageUrlString = urlString
@@ -34,6 +35,7 @@ class CustomImageView: UIImageView {
         
         image = nil
         
+        // if the image is already in the cache, get cache image
         if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) as? UIImage {
             self.image = imageFromCache
             return

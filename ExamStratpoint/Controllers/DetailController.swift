@@ -17,51 +17,34 @@ class DetailController: UIViewController {
     @IBOutlet var coverView: UIImageView!
     @IBOutlet var backdropView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var yearLabel: UILabel!
+    @IBOutlet var mpaRatingLabel: UILabel!
+    @IBOutlet var languageLabel: UILabel!
+    @IBOutlet var runtimeLabel: UILabel!
     @IBOutlet var ratingLabel: UILabel!
     @IBOutlet var overviewLabel: UILabel!
     
-    var topSafeArea: CGFloat = 0.0
-    var bottomSafeArea: CGFloat = 0.0
-    
     var titleValue: String = ""
     var yearValue: Int = 0
+    var languageValue: String = ""
+    var runtimeValue: Int = 0
     var ratingValue: Float = 0.0
+    var mpaRatingValue: String = ""
     var overviewValue: String = ""
     var slugValue: String = ""
     
     override func viewDidLoad() {
         
         self.titleLabel.text = self.titleValue
-        // self.headerLabel.text = self.titleValue
-        self.yearLabel.text = String(self.yearValue)
         self.ratingLabel.text = String(self.ratingValue)
+        self.mpaRatingLabel.text = self.mpaRatingValue
+        self.languageLabel.text = self.languageValue
+        self.runtimeLabel.text = String(self.runtimeValue) + " mins"
         self.overviewLabel.text = self.overviewValue
         self.overviewLabel.sizeToFit()
         
         let urlString = "https://aacayaco.github.io/movielist/images/" + self.slugValue + "-backdrop.jpg"
         let url = URL(string: urlString)
         self.backdropView.contentMode = .scaleAspectFill
-        
-        
-        let h1 = CGFloat(439.0)
-        let w1 = CGFloat(780.0)
-        
-        // let detailsViewSize = getDetailViewSize()
-        
-        /*
-        print(self.view.frame.width)
-        print(detailsViewSize.width)
-        */
-        
-        // let w2 = CGFloat(detailsViewSize.width)
-        
-        // let w2 = CGFloat(self.view0.frame.width)
-        let h2 = (h1 * self.view0.frame.width) / w1
-        
-        // self.view1.frame = CGRect(x: 0, y: 0, width: self.view0.frame.width, height: h2)
-        // self.view2.frame = CGRect(x: 0, y: h2, width: w2, height: self.view0.frame.height - h2)
-        
         
         getDataFromUrl(url: url!) { data, response, error in
             guard let data = data, error == nil else { return }
@@ -77,31 +60,20 @@ class DetailController: UIViewController {
             guard let data = data, error == nil else { return }
             DispatchQueue.main.async() {
                 self.coverView.image = UIImage(data: data)
+                
+                self.coverView.layer.masksToBounds = true
+                self.coverView.layer.cornerRadius = 5
+                self.coverView.layer.borderWidth = 1
+                self.coverView.layer.borderColor = UIColor.white.cgColor
             }
         }
-        
-        
         super.viewDidLoad()
-    }
-
-    func getDetailViewSize() -> CGSize {
-        var detailViewController: UIViewController
-        if ((self.splitViewController?.viewControllers.count)! > 1) {
-            detailViewController = (self.splitViewController?.viewControllers[1] as UIViewController?)!
-        } else {
-            detailViewController = (self.splitViewController?.viewControllers[0] as UIViewController?)!
-        }
-        return detailViewController.view.frame.size
     }
     
     func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             completion(data, response, error)
             }.resume()
-    }
-    
-    @IBAction func returnToHome(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
